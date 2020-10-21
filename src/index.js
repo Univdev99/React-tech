@@ -4,39 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { seconds: 0 };
-  }
-
-  tick() {
-    this.setState(
-      state => ({seconds: state.seconds + 1})
-    )
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
-  }
-  
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return (
-      <div>
-        Counting: {this.state.seconds}
-      </div>
-    );
-  }
-}
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Timer />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
