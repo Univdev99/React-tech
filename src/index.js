@@ -4,11 +4,30 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-class HelloWorld extends React.Component {
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { seconds: 0 };
+  }
+
+  tick() {
+    this.setState(
+      state => ({seconds: state.seconds + 1})
+    )
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.tick(), 1000);
+  }
+  
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     return (
       <div>
-        Hello {this.props.name}
+        Counting: {this.state.seconds}
       </div>
     );
   }
@@ -17,7 +36,7 @@ class HelloWorld extends React.Component {
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
-    <HelloWorld name="I love U"/>
+    <Timer />
   </React.StrictMode>,
   document.getElementById('root')
 );
